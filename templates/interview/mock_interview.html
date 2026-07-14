@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Mock Interview - AI Resume Optimizer Pro{% endblock %}
+{% block content %}
+<h2 class="display-font mb-1">Mock Interview</h2>
+<p class="text-secondary mb-4">Answer each question as you would live. The AI coach scores and gives feedback instantly.</p>
+
+<div class="glass-card p-4 mb-4">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <span class="badge" style="background:rgba(108,92,231,.15); color:var(--signal-violet);" id="mi-category">—</span>
+    <span class="text-secondary small" id="mi-progress">Question 1</span>
+  </div>
+  <h5 class="display-font" id="mi-question">Loading question...</h5>
+  <textarea id="mi-answer" class="form-control mt-3" rows="6" placeholder="Type your answer here..."></textarea>
+  <button class="btn gradient-btn mt-3" id="mi-submit"><i class="fa-solid fa-paper-plane"></i> Submit Answer</button>
+</div>
+
+<div class="glass-card p-4 d-none" id="mi-feedback">
+  <h6 class="display-font mb-3">Feedback</h6>
+  <div class="row g-3 mb-3 text-center">
+    <div class="col"><div class="text-secondary small">Confidence</div><div class="fs-4 fw-bold text-mono" id="fb-confidence">-</div></div>
+    <div class="col"><div class="text-secondary small">Grammar</div><div class="fs-4 fw-bold text-mono" id="fb-grammar">-</div></div>
+    <div class="col"><div class="text-secondary small">Technical</div><div class="fs-4 fw-bold text-mono" id="fb-technical">-</div></div>
+    <div class="col"><div class="text-secondary small">Communication</div><div class="fs-4 fw-bold text-mono" id="fb-communication">-</div></div>
+    <div class="col"><div class="text-secondary small">Overall</div><div class="fs-4 fw-bold gradient-text text-mono" id="fb-overall">-</div></div>
+  </div>
+  <p class="small"><strong>STAR method used:</strong> <span id="fb-star">-</span></p>
+  <div class="mb-2"><strong class="small">Strengths:</strong><ul id="fb-strengths"></ul></div>
+  <div class="mb-2"><strong class="small">Improve:</strong><ul id="fb-improvements"></ul></div>
+  <div class="mb-0"><strong class="small">Model answer:</strong><p class="text-secondary small" id="fb-model"></p></div>
+  <button class="btn btn-outline-light rounded-pill mt-2" id="mi-next">Next Question <i class="fa-solid fa-arrow-right"></i></button>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script id="mi-data" type="application/json">{{ qset.questions|safe }}</script>
+<script>
+const questions = JSON.parse(document.getElementById('mi-data').textContent || '[]');
+let idx = 0;
+const sessionId = {{ session.id }};
+
+function renderQuestion() {
+  if (idx >= questions.length) {
+    document.getElementById('mi-question').textContent = "You've completed all questions. Great work!";
+    document.getElementById('mi-submit').disabled = true;
+    fetch(`/interview/mock/${sessionId}/complete/`, { method: 'POST', headers: {'X-CSRFToken': getCookie('csrftoken')} });
+    return;
+  }
+  const q = questions[idx];
+  document.getElementById('mi-category').textContent = q.category;
+  document.getElementById('mi-question').textContent = q.question;
+  document.getElementById('mi-progress').textContent = `Question ${idx + 1} of ${questions.length}`;
+  document.getElementById('mi-answer').value = '';
+  document.getElementById('mi-feedback').classList.add('d-none');
+}
+
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+document.getElementById('mi-submit').addEventListener('click', async function () {
+  const answer = document.getElementById('mi-answer').value.trim();
+  if (!answer) { Swal.fire({title:'Type an answer first', icon:'warning'}); return; }
+  const q = questions[idx];
+  this.disabled = true;
+  this.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Evaluating...';
+
+  const resp = await fetch(`/interview/mock/${sessionId}/answer/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCookie('csrftoken') },
+    body: JSON.stringify({ question: q.question, category: q.category, answer }),
+  });
+  const data = await resp.json();
+  this.disabled = false;
+  this.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Answer';
+
+  if (data.error) { Swal.fire({title:'Error', text: data.error, icon:'error'}); return; }
+
+  document.getElementById('fb-confidence').textContent = data.confidence_score;
+  document.getElementById('fb-grammar').textContent = data.grammar_score;
+  document.getElementById('fb-technical').textContent = data.technical_accuracy_score;
+  document.getElementById('fb-communication').textContent = data.communication_score;
+  document.getElementById('fb-overall').textContent = data.overall_score;
+  document.getElementById('fb-star').textContent = data.star_method_used ? 'Yes' : 'No';
+  document.getElementById('fb-strengths').innerHTML = data.strengths.map(s => `<li>${s}</li>`).join('');
+  document.getElementById('fb-improvements').innerHTML = data.improvements.map(s => `<li>${s}</li>`).join('');
+  document.getElementById('fb-model').textContent = data.model_answer;
+  document.getElementById('mi-feedback').classList.remove('d-none');
+});
+
+document.getElementById('mi-next').addEventListener('click', function () {
+  idx += 1;
+  renderQuestion();
+});
+
+renderQuestion();
+</script>
+{% endblock %}

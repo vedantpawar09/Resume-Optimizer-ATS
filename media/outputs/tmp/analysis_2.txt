@@ -1,0 +1,49 @@
+Vedant Pawar
+========================================
+
+
+------------------------------
+Vedant Pawar
+Amravati,Maharashtra, India
+vedantpawar0915@gmail.com | +917249207351
+AI/ML Developer with hands-on experience building real-world AI systems using NLP, APIs, and scalable backends. Strong in FastAPI and Gradio with end-to-end model integration, prompt engineering, and real-time user interaction. Proficient in software development, full stack development, and web services.
+
+PROFESSIONAL EXPERIENCE
+------------------------------
+Incubators 01/2026 - 03/2026
+AI/ML & IoT Intern
+• Developed CREVA AI Robot, a multi-domain system covering 7 domains using microservices architecture and REST APIs
+• Worked on NLP, Web Development, and System Integration using HTML, CSS, and JavaScript
+• Built pipelines for user interaction→ AI processing→ response generation, integrating AI modules with web interfaces using Spring Boot and Hibernate
+• Contributed to real-world AI + IoT system architecture and deployment, utilizing Java and full stack development principles
+
+EDUCATION
+------------------------------
+Shri shivaji science college Amravati 07/2022 - 05/2025
+Bachelor of Computer Applications (BCA) - CGPA: 6.76, with a strong foundation in software design, development, and J2EE concepts
+
+PROJECTS
+------------------------------
+CREVA AI System (Multi-Domain AI Robot)
+• Built NLP-based interaction pipeline: user input → AI processing→ AI response using MEAN stack and AngularJS
+• Integrated multiple AI modules and APIs into a unified system, demonstrating large-scale AI system design and integration
+Advanced NLP System (Voice + Multi-language AI)
+• Developed NLP system using Flask + FastAPI, with voice output (gTTS, ElevenLabs) and multi-language support
+• Designed scalable API-based communication using React.js and Angular
+AI Career Guidance & IQ System
+• Generated IQ tests and delivered personalized feedback using AI APIs and web services
+• Built FastAPI backend with Gradio UI, demonstrating applied AI decision systems
+
+GITHUB PROJECTS
+------------------------------
+• Advanced NLP System – https://github.com/vedantpawar09/NLP_Project
+• AI Career Guidance System – https://github.com/vedantpawar09/IQTest-project
+
+KEY SKILLS
+------------------------------
+• Languages: Python, MySQL, Java
+• AI/ML: NLP, Machine Learning, Prompt Engineering
+• Frameworks: FastAPI, Flask, Gradio, Spring Boot
+• Libraries: Scikit-learn, Pandas, NumPy
+• APIs: OpenRouter, SerpAPI, ElevenLabs, gTTS
+• Tools: Git, GitHub, VS Code, with expertise in software development, full stack development, and web services

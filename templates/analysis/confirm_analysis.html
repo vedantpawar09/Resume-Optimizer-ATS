@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Review - AI Resume Optimizer Pro{% endblock %}
+{% block content %}
+<h2 class="display-font mb-1">Step 3 <span class="text-secondary fs-6">of 3</span></h2>
+<p class="text-secondary mb-4">Ready to run the AI analysis.</p>
+<div class="progress mb-4"><div class="progress-bar" style="width:100%"></div></div>
+
+<div class="row g-4">
+  <div class="col-md-6">
+    <div class="glass-card p-4 h-100">
+      <h6 class="display-font"><i class="fa-solid fa-file-lines gradient-text"></i> Resume</h6>
+      <p class="fw-medium mb-1">{{ resume.original_filename }}</p>
+      <p class="text-secondary small">{{ resume.file_type|upper }} &middot; {{ resume.file_size_kb }} KB &middot; uploaded {{ resume.uploaded_at|date:"M d, Y" }}</p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="glass-card p-4 h-100">
+      <h6 class="display-font"><i class="fa-solid fa-briefcase gradient-text"></i> Job Description</h6>
+      <p class="fw-medium mb-1">{{ jd.title|default:"Untitled role" }} {% if jd.company %}&middot; {{ jd.company }}{% endif %}</p>
+      <p class="text-secondary small">{{ jd.raw_text|truncatewords:40 }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="scan-hero glass-card p-5 text-center mt-4 position-relative">
+  <div class="scan-beam"></div>
+  <i class="fa-solid fa-radar fs-1 gradient-text mb-3"></i>
+  <h4 class="display-font">Ready to scan your resume against this job</h4>
+  <p class="text-secondary">Choose what you'd like the AI to do:</p>
+  <form method="post" action="{% url 'analysis:run_analysis' resume.id jd.id %}" data-ai-loading>
+    {% csrf_token %}
+    <div class="d-flex gap-3 justify-content-center flex-wrap mt-3">
+      <button type="submit" name="mode" value="score_only" class="btn btn-outline-light rounded-pill px-4">
+        <i class="fa-solid fa-magnifying-glass-chart"></i> Just Check My ATS Score
+      </button>
+      <button type="submit" name="mode" value="full_optimize" class="btn gradient-btn px-4">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Check Score &amp; Optimize Resume
+      </button>
+    </div>
+  </form>
+  <p class="text-secondary small mt-3 mb-0">
+    "Just Check My ATS Score" only analyzes your resume — no rewrite, no file changes.
+    "Optimize" also asks you to confirm any missing skills before generating an updated resume.
+    This usually takes 10–30 seconds.
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - AI Resume Optimizer Pro{% endblock %}
+{% block content %}
+<h2 class="display-font mb-1">Welcome back, {{ user.username }} <span class="gradient-text">👋</span></h2>
+<p class="text-secondary mb-4">Here's how your resumes have been performing.</p>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-4">
+    <div class="glass-card p-4">
+      <div class="text-secondary small">Total Optimizations</div>
+      <div class="display-font fs-1 fw-bold">{{ stats.total_optimizations }}</div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="glass-card p-4">
+      <div class="text-secondary small">Avg. ATS Score Before</div>
+      <div class="display-font fs-1 fw-bold">{{ stats.avg_score_before }}%</div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="glass-card p-4">
+      <div class="text-secondary small">Avg. ATS Score After</div>
+      <div class="display-font fs-1 fw-bold gradient-text">{{ stats.avg_score_after }}%</div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-lg-8">
+    <div class="glass-card p-4 h-100">
+      <h5 class="display-font mb-3">ATS Improvement Over Time</h5>
+      <canvas id="improvementChart" height="110"></canvas>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
+      <i class="fa-solid fa-file-arrow-up fs-1 gradient-text mb-3"></i>
+      <h5 class="display-font">Start a new optimization</h5>
+      <p class="text-secondary">Upload a resume and job description to get a fresh ATS report.</p>
+      <a href="{% url 'resumes:upload_resume' %}" class="btn gradient-btn">Upload Resume</a>
+    </div>
+  </div>
+</div>
+
+<div class="glass-card p-4">
+  <h5 class="display-font mb-3">Recent Optimizations</h5>
+  {% if recent %}
+  <div class="table-responsive">
+    <table class="table table-borderless align-middle mb-0">
+      <thead class="text-secondary small text-uppercase">
+        <tr><th>Resume</th><th>Job Description</th><th>Before</th><th>After</th><th>Date</th><th></th></tr>
+      </thead>
+      <tbody>
+        {% for a in recent %}
+        <tr>
+          <td>{{ a.resume.original_filename }}</td>
+          <td>{{ a.job_description.title|default:"Untitled JD" }}</td>
+          <td>{{ a.ats_score_before }}%</td>
+          <td class="gradient-text fw-bold">{{ a.ats_score_after }}%</td>
+          <td class="text-secondary small">{{ a.created_at|date:"M d, Y" }}</td>
+          <td><a href="{% url 'analysis:results' a.id %}" class="btn btn-sm btn-outline-light rounded-pill">View</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="text-secondary mb-0">No optimizations yet — <a href="{% url 'resumes:upload_resume' %}" class="gradient-text">upload your first resume</a> to get started.</p>
+  {% endif %}
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const ctx = document.getElementById('improvementChart');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: {{ chart_labels|safe }},
+    datasets: [
+      { label: 'Before', data: {{ chart_before|safe }}, borderColor: '#EF476F', tension: 0.35, fill:false },
+      { label: 'After', data: {{ chart_after|safe }}, borderColor: '#12D6B8', tension: 0.35, fill:false },
+    ]
+  },
+  options: { responsive:true, scales: { y: { min:0, max:100 } }, plugins:{ legend:{ labels:{ color:'#A8B0C7' } } } }
+});
+</script>
+{% endblock %}

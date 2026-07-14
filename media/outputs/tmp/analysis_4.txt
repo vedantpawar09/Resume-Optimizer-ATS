@@ -1,0 +1,49 @@
+Vedant Pawar
+========================================
+
+VEDANT PAWAR
+AMRAVATI,MAHARASHTRA, INDIA
+VEDANTPAWAR0915@GMAIL.COM | +917249207351
+------------------------------
+AI/ML Developer with hands-on experience building real-world AI systems using NLP, APIs, and scalable backends, and familiarity with Linux administration. Strong in FastAPI and Gradio with end-to-end model integration, prompt engineering, and real-time user interaction.
+
+PROFESSIONAL EXPERIENCE
+------------------------------
+Incubators 01/2026 - 03/2026
+AI/ML & IoT Intern
+- Developed CREVA AI Robot, a multi-domain system covering 7 domains, utilizing data engineering principles and integrating with web interfaces using APIs
+- Worked on NLP, Web Development, and System Integration, applying knowledge of Linux and data pipelines
+- Built pipelines for user interaction→ AI processing→ response generation, demonstrating understanding of data flow and processing
+- Integrated AI modules with web interfaces using APIs, and explored the use of PySpark for data processing
+- Contributed to real-world AI + IoT system architecture and deployment, with a focus on scalable and efficient systems
+
+EDUCATION
+------------------------------
+Shri shivaji science college Amravati 07/2022 - 05/2025
+Bachelor of Computer Applications (BCA) - CGPA: 6.76, providing a foundation in computer science and programming, including exposure to SQL Server and database management
+
+PROJECTS
+------------------------------
+CREVA AI System (Multi-Domain AI Robot)
+- Built NLP-based interaction pipeline: user input → AI processing→ AI response, integrating multiple AI modules and APIs into a unified system
+- Demonstrates large-scale AI system design and integration, with a focus on data engineering and Linux administration
+Advanced NLP System (Voice + Multi-language AI)
+- Developed NLP system using Flask + FastAPI, and added voice output (gTTS, ElevenLabs) and multi-language support
+- Designed scalable API-based communication, utilizing data pipeline principles and PySpark for data processing
+AI Career Guidance & IQ System
+- Generated IQ tests and delivered personalized feedback using AI APIs, built on a FastAPI backend with Gradio UI
+- Demonstrates applied AI decision systems, with a focus on data-driven insights and SQL Server database management
+
+GITHUB PROJECTS
+------------------------------
+- Advanced NLP System – https://github.com/vedantpawar09/NLP_Project
+- AI Career Guidance System – https://github.com/vedantpawar09/IQTest-project
+
+KEY SKILLS
+------------------------------
+- Languages: Python, MySQL
+- AI/ML: NLP, Machine Learning, Prompt Engineering
+- Frameworks: FastAPI, Flask, Gradio
+- Libraries: Scikit-learn, Pandas, NumPy
+- APIs: OpenRouter, SerpAPI, ElevenLabs, gTTS
+- Tools: Git, GitHub, VS Code, with experience in Linux and data engineering

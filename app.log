@@ -1,0 +1,63 @@
+[2026-07-08 10:49:47,606] INFO resume_optimizer: AI_ROUTE GET /analysis/run/1/1/ user=zatuvedu status=200 duration=0.03s
+[2026-07-08 10:50:10,404] ERROR resume_optimizer: Groq analysis failed
+Traceback (most recent call last):
+  File "/home/vedant-linux/Downloads/ai_resume_optimizer_pro/resume_optimizer/analysis/views.py", line 50, in run_analysis
+    analysis_data = client.chat_json(sys_p, user_p)
+  File "/home/vedant-linux/Downloads/ai_resume_optimizer_pro/resume_optimizer/analysis/services/groq_client.py", line 77, in chat_json
+    raw = self.chat(system_prompt, user_prompt, temperature=temperature,
+  File "/home/vedant-linux/Downloads/ai_resume_optimizer_pro/resume_optimizer/analysis/services/groq_client.py", line 59, in chat
+    resp = requests.post(self.url, headers=self._headers(), json=payload, timeout=self.timeout)
+  File "/home/vedant-linux/Downloads/ai_resume_optimizer_pro/resume_optimizer/analysis/services/groq_client.py", line 32, in _headers
+    raise GroqAPIError(
+analysis.services.groq_client.GroqAPIError: No Groq API key configured. Add GROQ_API_KEY to your .env file or set it in Settings > Groq API Key inside the app.
+[2026-07-08 10:50:10,414] INFO resume_optimizer: AI_ROUTE POST /analysis/run/1/1/ user=zatuvedu status=302 duration=0.04s
+[2026-07-08 10:50:10,479] INFO resume_optimizer: AI_ROUTE GET /analysis/confirm/1/1/ user=zatuvedu status=200 duration=0.03s
+[2026-07-08 10:57:03,186] INFO resume_optimizer: AI_ROUTE GET /analysis/run/2/2/ user=vedulavdu status=200 duration=0.09s
+[2026-07-08 10:57:10,495] INFO resume_optimizer: AI_ROUTE POST /analysis/run/2/2/ user=vedulavdu status=302 duration=3.56s
+[2026-07-08 10:57:10,589] INFO resume_optimizer: AI_ROUTE GET /analysis/confirm-skills/1/ user=vedulavdu status=200 duration=0.08s
+[2026-07-08 10:57:39,218] INFO resume_optimizer: AI_ROUTE GET /analysis/confirm-skills/1/ user=vedulavdu status=200 duration=0.03s
+[2026-07-08 10:57:41,663] INFO resume_optimizer: AI_ROUTE GET /analysis/confirm-skills/1/ user=vedulavdu status=200 duration=0.04s
+[2026-07-08 11:02:01,453] INFO resume_optimizer: AI_ROUTE GET /analysis/run/3/3/ user=vedulavdu status=200 duration=0.05s
+[2026-07-08 11:02:12,028] INFO resume_optimizer: AI_ROUTE POST /analysis/run/3/3/ user=vedulavdu status=302 duration=4.86s
+[2026-07-08 11:02:12,115] INFO resume_optimizer: AI_ROUTE GET /analysis/confirm-skills/2/ user=vedulavdu status=200 duration=0.06s
+[2026-07-08 11:02:56,643] INFO resume_optimizer: AI_ROUTE POST /analysis/confirm-skills/2/ user=vedulavdu status=500 duration=5.05s
+[2026-07-08 11:02:56,644] WARNING resume_optimizer: SLOW_REQUEST /analysis/confirm-skills/2/ took 5.05s
+[2026-07-08 11:16:25,262] INFO resume_optimizer: AI_ROUTE GET /analysis/run/4/4/ user=vedulavdu status=200 duration=0.05s
+[2026-07-08 11:16:39,731] INFO resume_optimizer: AI_ROUTE POST /analysis/run/4/4/ user=vedulavdu status=302 duration=2.99s
+[2026-07-08 11:16:39,816] INFO resume_optimizer: AI_ROUTE GET /analysis/confirm-skills/3/ user=vedulavdu status=200 duration=0.06s
+[2026-07-08 11:17:25,053] INFO resume_optimizer: AI_ROUTE POST /analysis/confirm-skills/3/ user=vedulavdu status=302 duration=4.70s
+[2026-07-08 11:17:25,276] INFO resume_optimizer: AI_ROUTE GET /analysis/results/3/ user=vedulavdu status=200 duration=0.20s
+[2026-07-08 11:17:37,908] INFO resume_optimizer: AI_ROUTE GET /analysis/download/3/pdf/ user=vedulavdu status=200 duration=0.08s
+[2026-07-09 09:28:40,303] INFO resume_optimizer: AI_ROUTE GET /analysis/run/5/5/ user=vedulavdu status=200 duration=0.05s
+[2026-07-09 09:28:46,497] INFO resume_optimizer: AI_ROUTE POST /analysis/run/5/5/ user=vedulavdu status=302 duration=2.63s
+[2026-07-09 09:28:46,638] INFO resume_optimizer: AI_ROUTE GET /analysis/confirm-skills/4/ user=vedulavdu status=200 duration=0.10s
+[2026-07-09 09:29:40,797] INFO resume_optimizer: AI_ROUTE POST /analysis/confirm-skills/4/ user=vedulavdu status=302 duration=9.11s
+[2026-07-09 09:29:40,798] WARNING resume_optimizer: SLOW_REQUEST /analysis/confirm-skills/4/ took 9.11s
+[2026-07-09 09:29:40,995] INFO resume_optimizer: AI_ROUTE GET /analysis/results/4/ user=vedulavdu status=200 duration=0.17s
+[2026-07-09 09:30:02,356] INFO resume_optimizer: AI_ROUTE GET /analysis/download/4/pdf/ user=vedulavdu status=200 duration=0.06s
+[2026-07-12 10:40:52,489] INFO resume_optimizer: AI_ROUTE GET /analysis/run/6/6/ user=vedulavdu status=200 duration=0.06s
+[2026-07-12 10:41:09,924] INFO resume_optimizer: AI_ROUTE POST /analysis/run/6/6/ user=vedulavdu status=302 duration=2.91s
+[2026-07-12 10:41:10,032] INFO resume_optimizer: AI_ROUTE GET /analysis/confirm-skills/5/ user=vedulavdu status=200 duration=0.09s
+[2026-07-12 10:42:09,105] INFO resume_optimizer: AI_ROUTE POST /analysis/confirm-skills/5/ user=vedulavdu status=302 duration=3.64s
+[2026-07-12 10:42:09,277] INFO resume_optimizer: AI_ROUTE GET /analysis/results/5/ user=vedulavdu status=200 duration=0.16s
+[2026-07-12 10:42:22,704] INFO resume_optimizer: AI_ROUTE GET /analysis/download/5/pdf/ user=vedulavdu status=200 duration=0.05s
+[2026-07-12 11:02:56,932] INFO resume_optimizer: AI_ROUTE GET /analysis/run/7/7/ user=vedulavdu status=200 duration=0.05s
+[2026-07-12 11:03:11,108] INFO resume_optimizer: AI_ROUTE POST /analysis/run/7/7/ user=vedulavdu status=302 duration=3.03s
+[2026-07-12 11:03:11,197] INFO resume_optimizer: AI_ROUTE GET /analysis/confirm-skills/6/ user=vedulavdu status=200 duration=0.07s
+[2026-07-12 11:03:35,752] INFO resume_optimizer: AI_ROUTE POST /analysis/confirm-skills/6/ user=vedulavdu status=302 duration=4.78s
+[2026-07-12 11:03:35,782] INFO resume_optimizer: AI_ROUTE GET /analysis/results/6/ user=vedulavdu status=200 duration=0.02s
+[2026-07-12 11:03:49,050] INFO resume_optimizer: AI_ROUTE GET /analysis/download/6/pdf/ user=vedulavdu status=200 duration=0.07s
+[2026-07-14 04:40:46,792] INFO resume_optimizer: AI_ROUTE GET /analysis/run/8/8/ user=Vedantpawar status=200 duration=0.06s
+[2026-07-14 04:41:04,848] INFO resume_optimizer: AI_ROUTE POST /analysis/run/8/8/ user=Vedantpawar status=302 duration=6.99s
+[2026-07-14 04:41:04,849] WARNING resume_optimizer: SLOW_REQUEST /analysis/run/8/8/ took 6.99s
+[2026-07-14 04:41:04,915] INFO resume_optimizer: AI_ROUTE GET /analysis/confirm-skills/7/ user=Vedantpawar status=200 duration=0.05s
+[2026-07-14 04:45:29,026] INFO resume_optimizer: AI_ROUTE POST /analysis/confirm-skills/7/ user=Vedantpawar status=302 duration=5.60s
+[2026-07-14 04:45:29,026] WARNING resume_optimizer: SLOW_REQUEST /analysis/confirm-skills/7/ took 5.60s
+[2026-07-14 04:45:29,095] INFO resume_optimizer: AI_ROUTE GET /analysis/results/7/ user=Vedantpawar status=200 duration=0.06s
+[2026-07-14 05:00:00,397] INFO resume_optimizer: AI_ROUTE GET /analysis/download/7/pdf/ user=Vedantpawar status=200 duration=0.02s
+[2026-07-14 05:08:11,034] INFO resume_optimizer: AI_ROUTE GET /analysis/run/9/9/ user=Vedantpawar status=200 duration=0.04s
+[2026-07-14 05:08:18,375] INFO resume_optimizer: AI_ROUTE POST /analysis/run/9/9/ user=Vedantpawar status=302 duration=2.52s
+[2026-07-14 05:08:18,437] INFO resume_optimizer: AI_ROUTE GET /analysis/confirm-skills/8/ user=Vedantpawar status=200 duration=0.05s
+[2026-07-14 05:09:09,745] INFO resume_optimizer: AI_ROUTE POST /analysis/confirm-skills/8/ user=Vedantpawar status=302 duration=4.25s
+[2026-07-14 05:09:09,770] INFO resume_optimizer: AI_ROUTE GET /analysis/results/8/ user=Vedantpawar status=200 duration=0.02s
+[2026-07-14 05:09:30,451] INFO resume_optimizer: AI_ROUTE GET /analysis/download/8/pdf/ user=Vedantpawar status=200 duration=0.02s

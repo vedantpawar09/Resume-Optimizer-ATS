@@ -1,0 +1,152 @@
+/* ===========================================================
+   AI Resume Optimizer Pro - design tokens
+   Concept: an "ATS scanner" reading a resume - a horizontal
+   scan-beam is the signature motif used sparingly (hero, score
+   rings). Palette pairs deep ink navy with a violet->teal signal
+   gradient, evoking a scanner light rather than generic SaaS blue.
+   =========================================================== */
+:root{
+  --ink-950:#0A0E1A;
+  --ink-900:#0F1526;
+  --ink-800:#161E33;
+  --ink-700:#212B47;
+  --signal-violet:#6C5CE7;
+  --signal-teal:#12D6B8;
+  --signal-amber:#F5A623;
+  --signal-rose:#EF476F;
+  --paper-050:#F7F8FC;
+  --paper-100:#EDEFF7;
+  --text-hi:#F4F6FC;
+  --text-mid:#A8B0C7;
+  --text-dim:#6C7794;
+  --font-display:'Space Grotesk', 'Sora', sans-serif;
+  --font-body:'Inter', sans-serif;
+  --font-mono:'JetBrains Mono', monospace;
+  --radius-lg:18px;
+  --radius-md:12px;
+  --shadow-glass: 0 8px 32px rgba(10,14,26,0.35);
+}
+
+[data-theme="dark"]{
+  --bg:var(--ink-950);
+  --surface: rgba(255,255,255,0.045);
+  --surface-solid: var(--ink-900);
+  --border: rgba(255,255,255,0.08);
+  --text-primary: var(--text-hi);
+  --text-secondary: var(--text-mid);
+}
+[data-theme="light"]{
+  --bg:var(--paper-050);
+  --surface: rgba(255,255,255,0.65);
+  --surface-solid: #ffffff;
+  --border: rgba(15,21,38,0.08);
+  --text-primary:#141A2E;
+  --text-secondary:#565F7A;
+}
+
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  background:var(--bg);
+  color:var(--text-primary);
+  font-family:var(--font-body);
+  transition:background .25s ease, color .25s ease;
+}
+h1,h2,h3,h4,h5,.display-font{ font-family:var(--font-display); letter-spacing:-0.01em; }
+.text-mono{ font-family:var(--font-mono); }
+
+.gradient-text{
+  background:linear-gradient(92deg, var(--signal-violet), var(--signal-teal));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.gradient-btn{
+  background:linear-gradient(92deg, var(--signal-violet), var(--signal-teal));
+  border:none; color:#fff; font-weight:600; border-radius:999px;
+  padding:.65rem 1.6rem; transition:transform .15s ease, box-shadow .15s ease;
+}
+.gradient-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(108,92,231,.35); color:#fff; }
+
+.glass-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:var(--shadow-glass);
+}
+
+/* ---- app shell ---- */
+.app-shell{ display:flex; min-height:100vh; }
+.sidebar{
+  width:260px; flex-shrink:0; padding:1.5rem 1rem;
+  background:var(--surface-solid); border-right:1px solid var(--border);
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+}
+.sidebar .brand{ font-family:var(--font-display); font-weight:700; font-size:1.15rem; }
+.sidebar .nav-link{
+  color:var(--text-secondary); border-radius:10px; padding:.6rem .8rem;
+  display:flex; align-items:center; gap:.7rem; font-weight:500; font-size:.92rem;
+  margin-bottom:.15rem; transition:background .15s ease, color .15s ease;
+}
+.sidebar .nav-link i{ width:18px; text-align:center; }
+.sidebar .nav-link:hover{ background:var(--surface); color:var(--text-primary); }
+.sidebar .nav-link.active{
+  background:linear-gradient(92deg, rgba(108,92,231,.18), rgba(18,214,184,.14));
+  color:var(--text-primary); font-weight:600;
+}
+.main-content{ flex:1; padding:1.75rem 2rem 3rem; max-width:100%; }
+.topbar{ display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; }
+.theme-toggle{
+  width:42px; height:42px; border-radius:50%; border:1px solid var(--border);
+  background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer;
+}
+
+/* ---- scan-beam signature (hero + score rings) ---- */
+.scan-hero{ position:relative; overflow:hidden; border-radius:var(--radius-lg); }
+.scan-beam{
+  position:absolute; top:0; left:-30%; width:30%; height:100%;
+  background:linear-gradient(100deg, transparent, rgba(18,214,184,.35), rgba(108,92,231,.35), transparent);
+  animation:scanmove 3.2s ease-in-out infinite;
+}
+@keyframes scanmove{
+  0%{ left:-30%; } 50%{ left:100%; } 100%{ left:-30%; }
+}
+@media (prefers-reduced-motion: reduce){ .scan-beam{ animation:none; display:none; } }
+
+.score-ring{ position:relative; width:118px; height:118px; }
+.score-ring svg{ transform:rotate(-90deg); }
+.score-ring .ring-value{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-mono); font-weight:700; font-size:1.4rem;
+}
+
+.kw-pill{ display:inline-block; padding:.3rem .75rem; border-radius:999px; font-size:.8rem; margin:.2rem; }
+.kw-matched{ background:rgba(18,214,184,.15); color:var(--signal-teal); border:1px solid rgba(18,214,184,.35); }
+.kw-missing{ background:rgba(239,71,111,.13); color:var(--signal-rose); border:1px solid rgba(239,71,111,.32); }
+.kw-suggested{ background:rgba(245,166,35,.14); color:var(--signal-amber); border:1px solid rgba(245,166,35,.32); }
+
+.diff-added{ background:rgba(18,214,184,.16); text-decoration:none; }
+.diff-modified{ background:rgba(245,166,35,.18); }
+.diff-removed{ background:rgba(239,71,111,.16); text-decoration:line-through; opacity:.8; }
+
+.upload-drop{
+  border:2px dashed var(--border); border-radius:var(--radius-md); padding:2.5rem 1.5rem;
+  text-align:center; cursor:pointer; transition:border-color .15s ease, background .15s ease;
+}
+.upload-drop.dragover{ border-color:var(--signal-teal); background:rgba(18,214,184,.06); }
+
+.progress{ background:var(--surface); border-radius:999px; height:.55rem; }
+.progress-bar{ background:linear-gradient(92deg, var(--signal-violet), var(--signal-teal)); }
+
+.badge-difficulty-Easy{ background:rgba(18,214,184,.16); color:var(--signal-teal); }
+.badge-difficulty-Medium{ background:rgba(245,166,35,.16); color:var(--signal-amber); }
+.badge-difficulty-Hard{ background:rgba(239,71,111,.16); color:var(--signal-rose); }
+
+::-webkit-scrollbar{ width:8px; }
+::-webkit-scrollbar-thumb{ background:var(--border); border-radius:8px; }
+
+@media (max-width: 900px){
+  .sidebar{ position:fixed; left:-280px; z-index:1050; transition:left .2s ease; }
+  .sidebar.open{ left:0; }
+  .main-content{ padding:1.25rem; }
+}

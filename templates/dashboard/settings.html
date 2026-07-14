@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Settings - AI Resume Optimizer Pro{% endblock %}
+{% block content %}
+<h2 class="display-font mb-4">Settings</h2>
+
+<div class="row g-4">
+  <div class="col-lg-6">
+    <div class="glass-card p-4">
+      <h5 class="display-font mb-3"><i class="fa-solid fa-key gradient-text"></i> Groq API Key</h5>
+      <p class="text-secondary small">Leave blank to use the server's default key (configured in <code>.env</code>). Set your own key here to use your personal Groq quota instead.</p>
+      <form method="post" data-ai-loading>
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label text-secondary small">Personal Groq API Key</label>
+          {{ form.groq_api_key_override }}
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-secondary small">Theme</label>
+          {{ form.theme_preference }}
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-secondary small">Job Title (for personalization)</label>
+          {{ form.job_title }}
+        </div>
+        <button type="submit" class="btn gradient-btn">Save Settings</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="glass-card p-4">
+      <h5 class="display-font mb-3"><i class="fa-solid fa-circle-info gradient-text"></i> About Groq Setup</h5>
+      <ol class="text-secondary">
+        <li>Create a free account at <a class="gradient-text" href="https://console.groq.com" target="_blank">console.groq.com</a></li>
+        <li>Generate an API key from the API Keys section</li>
+        <li>Paste it above, or add it to your server's <code>.env</code> as <code>GROQ_API_KEY</code></li>
+        <li>The app uses the <code>llama-3.3-70b-versatile</code> model by default</li>
+      </ol>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% block title %}ATS Results - AI Resume Optimizer Pro{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+  <div>
+    <h2 class="display-font mb-1">ATS Analysis Results</h2>
+    <p class="text-secondary mb-0">{{ analysis.resume.original_filename }} vs {{ analysis.job_description.title|default:"Job Description" }}</p>
+  </div>
+  <div class="d-flex gap-2">
+    <a href="{% url 'analysis:compare' analysis.id %}" class="btn btn-outline-light rounded-pill"><i class="fa-solid fa-code-compare"></i> Compare</a>
+    <a href="{% url 'interview:generate_questions' analysis.id %}" class="btn gradient-btn"><i class="fa-solid fa-comments"></i> Interview Prep</a>
+  </div>
+</div>
+
+{% if analysis.rewritten_sections %}
+<div class="glass-card p-4 mb-4">
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+    <h5 class="display-font mb-0"><i class="fa-solid fa-file-circle-check gradient-text"></i> Complete Updated Resume</h5>
+    <div class="d-flex gap-2">
+      <a href="{% url 'analysis:download' analysis.id 'pdf' %}" class="btn gradient-btn btn-sm"><i class="fa-solid fa-file-pdf"></i> Download PDF</a>
+      <a href="{% url 'analysis:download' analysis.id 'docx' %}" class="btn btn-outline-light rounded-pill btn-sm"><i class="fa-solid fa-file-word"></i> DOCX</a>
+      <a href="{% url 'analysis:download' analysis.id 'txt' %}" class="btn btn-outline-light rounded-pill btn-sm"><i class="fa-solid fa-file-lines"></i> TXT</a>
+    </div>
+  </div>
+  <div class="text-mono small" style="white-space:pre-wrap; max-height:500px; overflow-y:auto; line-height:1.6;">{{ full_resume_text }}</div>
+</div>
+{% else %}
+<div class="glass-card p-4 mb-4 text-center scan-hero position-relative">
+  <div class="scan-beam"></div>
+  <i class="fa-solid fa-magnifying-glass-chart fs-2 gradient-text mb-2"></i>
+  <h5 class="display-font mb-2">This is a score-only check — no resume was rewritten yet</h5>
+  <p class="text-secondary mb-3">Want an ATS-optimized version of this resume based on the scores below? You'll be able to confirm which missing skills you actually have first.</p>
+  <a href="{% url 'analysis:confirm_missing_skills' analysis.id %}" class="btn gradient-btn">
+    <i class="fa-solid fa-wand-magic-sparkles"></i> Optimize This Resume Now
+  </a>
+</div>
+{% endif %}
+
+<div class="row g-3 mb-4">
+  <div class="col-md-3 col-6 text-center">
+    <div class="glass-card p-3">
+      <div class="text-secondary small mb-2">Before</div>
+      <div class="score-ring mx-auto" data-score="{{ analysis.ats_score_before }}" data-color="#EF476F"></div>
+    </div>
+  </div>
+  <div class="col-md-3 col-6 text-center">
+    <div class="glass-card p-3">
+      <div class="text-secondary small mb-2">After (Projected)</div>
+      <div class="score-ring mx-auto" data-score="{{ analysis.ats_score_after }}" data-color="#12D6B8"></div>
+    </div>
+  </div>
+  <div class="col-md-3 col-6 text-center">
+    <div class="glass-card p-3">
+      <div class="text-secondary small mb-2">Keyword Match</div>
+      <div class="score-ring mx-auto" data-score="{{ analysis.keyword_match_percent }}" data-color="#6C5CE7"></div>
+    </div>
+  </div>
+  <div class="col-md-3 col-6 text-center">
+    <div class="glass-card p-3">
+      <div class="text-secondary small mb-2">Recruiter Match</div>
+      <div class="score-ring mx-auto" data-score="{{ analysis.recruiter_match_percent }}" data-color="#F5A623"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4 mb-4">
+  <div class="col-lg-5">
+    <div class="glass-card p-4 h-100">
+      <h6 class="display-font mb-3">Score Radar</h6>
+      <canvas id="radarChart"></canvas>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="glass-card p-4 h-100">
+      <h6 class="display-font mb-3">Keyword Breakdown</h6>
+      <canvas id="pieChart"></canvas>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="glass-card p-4 h-100">
+      <h6 class="display-font mb-3">Other Scores</h6>
+      {% for label, val in extra_scores %}{% endfor %}
+      <div class="mb-3">
+        <div class="d-flex justify-content-between small text-secondary"><span>Resume Match</span><span>{{ analysis.resume_match_percent }}%</span></div>
+        <div class="progress"><div class="progress-bar" style="width:{{ analysis.resume_match_percent }}%"></div></div>
+      </div>
+      <div class="mb-3">
+        <div class="d-flex justify-content-between small text-secondary"><span>Skills Match</span><span>{{ analysis.skills_match_percent }}%</span></div>
+        <div class="progress"><div class="progress-bar" style="width:{{ analysis.skills_match_percent }}%"></div></div>
+      </div>
+      <div class="mb-3">
+        <div class="d-flex justify-content-between small text-secondary"><span>Formatting</span><span>{{ analysis.formatting_score }}%</span></div>
+        <div class="progress"><div class="progress-bar" style="width:{{ analysis.formatting_score }}%"></div></div>
+      </div>
+      <div class="mb-3">
+        <div class="d-flex justify-content-between small text-secondary"><span>Grammar</span><span>{{ analysis.grammar_score }}%</span></div>
+        <div class="progress"><div class="progress-bar" style="width:{{ analysis.grammar_score }}%"></div></div>
+      </div>
+      <div class="mb-0">
+        <div class="d-flex justify-content-between small text-secondary"><span>Readability</span><span>{{ analysis.readability_score }}%</span></div>
+        <div class="progress"><div class="progress-bar" style="width:{{ analysis.readability_score }}%"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="glass-card p-4 mb-4">
+  <h6 class="display-font mb-3">Summary</h6>
+  <p class="text-secondary mb-0">{{ analysis.overall_summary }}</p>
+</div>
+
+{% if analysis.fidelity_warnings %}
+<div class="glass-card p-4 mb-4" style="border-color: rgba(239,71,111,.35);">
+  <h6 class="display-font mb-2"><i class="fa-solid fa-triangle-exclamation" style="color:var(--signal-rose);"></i> Fidelity Check</h6>
+  <p class="text-secondary small">
+    These specific details (numbers, years, or names) from your original resume weren't
+    detected in the rewritten version. Please double-check the updated resume still
+    reflects them accurately before using it:
+  </p>
+  {% for w in analysis.fidelity_warnings %}<span class="kw-pill kw-missing">{{ w }}</span>{% endfor %}
+</div>
+{% endif %}
+
+{% if analysis.rewritten_sections %}
+<div class="glass-card p-4 mb-4">
+  <h6 class="display-font mb-3"><i class="fa-solid fa-key gradient-text"></i> What Changed in Your Keywords</h6>
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="text-secondary small mb-2">✅ Added to your updated resume ({{ analysis.keywords_inserted|length }})</div>
+      {% if analysis.keywords_inserted %}
+        {% for k in analysis.keywords_inserted %}<span class="kw-pill kw-matched">{{ k }}</span>{% endfor %}
+      {% else %}
+        <p class="text-secondary small mb-0">No new keywords were inserted — your resume already covered the role well.</p>
+      {% endif %}
+    </div>
+    <div class="col-md-6">
+      <div class="text-secondary small mb-2">⚠️ Still missing ({{ still_missing_keywords|length }})</div>
+      {% if still_missing_keywords %}
+        {% for k in still_missing_keywords %}<span class="kw-pill kw-missing">{{ k }}</span>{% endfor %}
+        <p class="text-secondary small mt-2 mb-0">These weren't added because we couldn't find a truthful basis for them in your original resume. If you genuinely have this experience, add it yourself and re-run the analysis.</p>
+      {% else %}
+        <p class="text-secondary small mb-0">Nothing left — every relevant missing keyword was addressed.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="row g-4 mb-4">
+  <div class="col-lg-6">
+    <div class="glass-card p-4 h-100">
+      <h6 class="display-font mb-3">Baseline Keyword Analysis <span class="text-secondary small fw-normal">(before optimization)</span></h6>
+      <div class="mb-2"><span class="text-secondary small">Matched</span><br>
+        {% for k in analysis.matched_keywords %}<span class="kw-pill kw-matched">{{ k }}</span>{% endfor %}
+      </div>
+      <div class="mb-2"><span class="text-secondary small">Missing</span><br>
+        {% for k in analysis.missing_keywords %}<span class="kw-pill kw-missing">{{ k }}</span>{% endfor %}
+      </div>
+      <div class="mb-0"><span class="text-secondary small">Suggested</span><br>
+        {% for k in analysis.suggested_keywords %}<span class="kw-pill kw-suggested">{{ k }}</span>{% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="glass-card p-4 h-100">
+      <h6 class="display-font mb-3">Section Analysis</h6>
+      <div class="row">
+        <div class="col-6">
+          <div class="text-secondary small mb-1">Strong Sections</div>
+          {% for s in analysis.strong_sections %}<div class="mb-1"><i class="fa-solid fa-circle-check" style="color:var(--signal-teal)"></i> {{ s }}</div>{% endfor %}
+        </div>
+        <div class="col-6">
+          <div class="text-secondary small mb-1">Weak Sections</div>
+          {% for w in analysis.weak_sections %}<div class="mb-1"><i class="fa-solid fa-triangle-exclamation" style="color:var(--signal-rose)"></i> {{ w.section }} <span class="text-secondary small">— {{ w.issue }}</span></div>{% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="glass-card p-4 mb-4">
+  <h6 class="display-font mb-3">ATS Formatting Checks</h6>
+  <div class="row row-cols-2 row-cols-md-4 g-3">
+    {% for key, val in analysis.ats_formatting_checks.items %}
+    <div class="col">
+      <div class="d-flex align-items-center gap-2">
+        {% if val %}<i class="fa-solid fa-circle-check" style="color:var(--signal-teal)"></i>{% else %}<i class="fa-solid fa-circle-xmark" style="color:var(--signal-rose)"></i>{% endif %}
+        <span class="small text-secondary">{{ key|title }}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% if analysis.rewritten_sections %}
+<div class="text-center">
+  <a href="{% url 'analysis:download' analysis.id 'pdf' %}" class="btn gradient-btn me-2"><i class="fa-solid fa-file-pdf"></i> Download PDF</a>
+  <a href="{% url 'analysis:download' analysis.id 'docx' %}" class="btn btn-outline-light rounded-pill me-2"><i class="fa-solid fa-file-word"></i> Download DOCX</a>
+  <a href="{% url 'analysis:download' analysis.id 'txt' %}" class="btn btn-outline-light rounded-pill"><i class="fa-solid fa-file-lines"></i> Download TXT</a>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+new Chart(document.getElementById('radarChart'), {
+  type: 'radar',
+  data: {
+    labels: ['Keyword', 'Resume', 'Skills', 'Recruiter', 'Formatting', 'Grammar', 'Readability'],
+    datasets: [{
+      label: 'Score',
+      data: [{{ analysis.keyword_match_percent }}, {{ analysis.resume_match_percent }}, {{ analysis.skills_match_percent }},
+             {{ analysis.recruiter_match_percent }}, {{ analysis.formatting_score }}, {{ analysis.grammar_score }}, {{ analysis.readability_score }}],
+      backgroundColor: 'rgba(108,92,231,0.25)', borderColor: '#6C5CE7', pointBackgroundColor: '#12D6B8',
+    }]
+  },
+  options: { scales: { r: { angleLines:{color:'rgba(128,128,128,.2)'}, grid:{color:'rgba(128,128,128,.2)'}, pointLabels:{color:'#A8B0C7'}, ticks:{display:false}, suggestedMin:0, suggestedMax:100 } }, plugins:{legend:{display:false}} }
+});
+new Chart(document.getElementById('pieChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Matched', 'Missing', 'Suggested'],
+    datasets: [{ data: [{{ analysis.matched_keywords|length }}, {{ analysis.missing_keywords|length }}, {{ analysis.suggested_keywords|length }}],
+      backgroundColor: ['#12D6B8', '#EF476F', '#F5A623'] }]
+  },
+  options: { plugins: { legend: { labels: { color:'#A8B0C7' } } } }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Confirm Skills - AI Resume Optimizer Pro{% endblock %}
+{% block content %}
+<div class="glass-card p-4 p-md-5" style="max-width: 780px; margin: 0 auto;">
+  <div class="text-center mb-4">
+    <i class="fa-solid fa-circle-question fs-1 gradient-text mb-3"></i>
+    <h3 class="display-font mb-2">Before we rewrite your resume...</h3>
+    <p class="text-secondary mb-0">
+      The job description mentions some skills/keywords your current resume doesn't show.
+      For each one, tell us honestly: do you actually have real experience with it?
+    </p>
+    <p class="text-secondary small mt-2">
+      <i class="fa-solid fa-shield-halved"></i>
+      Only skip this and say "Yes" if you can genuinely speak to it in an interview -
+      if you say yes, take a moment to brush up on it before you apply.
+      Anything left unchecked is left out of your resume entirely.
+    </p>
+  </div>
+
+  <form method="post" data-ai-loading>
+    {% csrf_token %}
+    <div class="mb-4">
+      {% for gap in gaps %}
+      <div class="d-flex justify-content-between align-items-center p-3 mb-2" style="background:var(--surface); border:1px solid var(--border); border-radius:12px;">
+        <div>
+          <div class="fw-medium">{{ gap }}</div>
+          <div class="text-secondary small">Not found in your original resume</div>
+        </div>
+        <div class="form-check form-switch mb-0">
+          <input class="form-check-input" type="checkbox" role="switch" name="approved_skill" value="{{ gap }}" id="skill-{{ forloop.counter }}">
+          <label class="form-check-label small text-secondary" for="skill-{{ forloop.counter }}">I have this</label>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="d-flex gap-2 justify-content-center flex-wrap">
+      <button type="submit" name="skip_all" value="1" class="btn btn-outline-light rounded-pill">
+        <i class="fa-solid fa-forward"></i> Skip All &mdash; Don't Add Any
+      </button>
+      <button type="submit" class="btn gradient-btn">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Confirm & Optimize Resume
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}

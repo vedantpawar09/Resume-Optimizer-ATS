@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Interview Questions - AI Resume Optimizer Pro{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+  <h2 class="display-font mb-0">Interview Questions</h2>
+  <a href="{% url 'interview:mock_interview' qset.id %}" class="btn gradient-btn"><i class="fa-solid fa-microphone"></i> Start Mock Interview</a>
+</div>
+
+<ul class="nav nav-pills mb-4" id="qTabs">
+  <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#all">All ({{ qset.questions|length }})</button></li>
+  <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#hr">Top 20 HR</button></li>
+  <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tech">Top 20 Technical</button></li>
+  <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#resumeq">Top 10 Resume</button></li>
+  <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#project">Top 10 Project</button></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="all">
+    <div class="accordion" id="questionAccordion">
+      {% for q in qset.questions %}
+      <div class="accordion-item glass-card mb-2 border-0">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed bg-transparent" style="color:var(--text-primary)" type="button" data-bs-toggle="collapse" data-bs-target="#q{{ forloop.counter }}">
+            <span class="badge me-2" style="background:rgba(108,92,231,.15); color:var(--signal-violet);">{{ q.category }}</span>
+            <span class="badge me-2 badge-difficulty-{{ q.difficulty }}">{{ q.difficulty }}</span>
+            {{ q.question }}
+          </button>
+        </h2>
+        <div id="q{{ forloop.counter }}" class="accordion-collapse collapse" data-bs-parent="#questionAccordion">
+          <div class="accordion-body">
+            <p class="text-secondary small"><strong>Why it's asked:</strong> {{ q.why_asked }}</p>
+            <p class="small"><strong>Sample answer:</strong> {{ q.sample_answer }}</p>
+            <p class="text-secondary small mb-0"><strong>Tips:</strong> {{ q.best_answer_tips }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="hr">
+    <div class="glass-card p-4"><ol>{% for q in qset.top_20_hr %}<li class="mb-2">{{ q }}</li>{% endfor %}</ol></div>
+  </div>
+  <div class="tab-pane fade" id="tech">
+    <div class="glass-card p-4"><ol>{% for q in qset.top_20_technical %}<li class="mb-2">{{ q }}</li>{% endfor %}</ol></div>
+  </div>
+  <div class="tab-pane fade" id="resumeq">
+    <div class="glass-card p-4"><ol>{% for q in qset.top_10_resume_based %}<li class="mb-2">{{ q }}</li>{% endfor %}</ol></div>
+  </div>
+  <div class="tab-pane fade" id="project">
+    <div class="glass-card p-4"><ol>{% for q in qset.top_10_project_based %}<li class="mb-2">{{ q }}</li>{% endfor %}</ol></div>
+  </div>
+</div>
+{% endblock %}

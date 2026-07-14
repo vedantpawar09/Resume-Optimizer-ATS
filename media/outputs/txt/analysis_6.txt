@@ -1,0 +1,50 @@
+Pratiksha Mhaske
+========================================
+
+
+------------------------------
+Pratiksha Mhaske
+Amravati, Maharashtra, India
+pratikshamhaske31@gmail.com | 8483062457
+Python Developer with hands-on experience building real-world AI systems using NLP, APIs, and scalable backends. Strong in FastAPI and Gradio with end-to-end model integration, prompt engineering, and real-time user interaction, utilizing OpenAI and LangChain for enhanced AI capabilities.
+
+PROFESSIONAL EXPERIENCE
+------------------------------
+Incubators 01/2026 - 03/2026
+AI/ML & IoT Intern
+- Developed CREVA AI Robot, a multi-domain system covering 7 domains, integrating NLP, Web Development, and System Integration with AI modules using APIs and TensorFlow for machine learning tasks.
+- Built pipelines for user interaction → AI processing → response generation, utilizing PyTorch for efficient processing.
+- Integrated AI modules with web interfaces using APIs, demonstrating expertise in Chatbots and AI Agents.
+- Contributed to real-world AI + IoT system architecture and deployment, focusing on LLMs and Intelligent Workflows.
+
+EDUCATION
+------------------------------
+Shri Shivaji Science College, Amravati 07/2022 - 05/2025
+Bachelor of Computer Applications (BCA) - CGPA: 6.69
+
+PROJECTS
+------------------------------
+CREVA AI System (Multi-Domain AI Robot)
+- Built NLP-based interaction pipeline: user input → AI processing → AI response, utilizing Machine Learning for improved accuracy.
+- Integrated multiple AI modules and APIs into a unified system, demonstrating large-scale AI system design and integration with OpenAI and LangChain.
+Advanced NLP System (Voice + Multi-language AI)
+- Built NLP system using Flask + FastAPI, adding voice output and multi-language support with TensorFlow and PyTorch for efficient processing.
+- Designed scalable API-based communication, focusing on Chatbots and AI Agents.
+AI Career Guidance & IQ System
+- Generated IQ tests and delivered personalized feedback using AI APIs, demonstrating applied AI decision systems with Machine Learning.
+
+GITHUB PROJECTS
+------------------------------
+- Advanced NLP System: https://github.com/pratikshamhaske31-commits/NLP_Project
+- AI Career Guidance System: https://github.com/pratikshamhaske31-commits/IQTest-project
+
+KEY SKILLS
+------------------------------
+- Programming Languages: Python, SQL, HTML, CSS, JavaScript
+- Frontend: Gradio, Streamlit, Django
+- Backend: FastAPI, Flask, REST API Development
+- Databases: MySQL, Database Design, CRUD Operations
+- Libraries: Pandas, NumPy, Scikit-learn
+- API & Integration: OpenRouter, SerpAPI, Third-party API Integration, OpenAI, LangChain
+- Concepts: Full Stack Development, Backend Development, System Design, API Integration, Real-Time Processing, Machine Learning, LLMs, Chatbots, AI Agents
+- Tools: Git, GitHub, VS Code

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Upload Resume - AI Resume Optimizer Pro{% endblock %}
+{% block content %}
+<h2 class="display-font mb-1">Step 1 <span class="text-secondary fs-6">of 3</span></h2>
+<p class="text-secondary mb-4">Upload your resume as a PDF or DOCX file.</p>
+
+<div class="progress mb-4"><div class="progress-bar" style="width:33%"></div></div>
+
+<div class="row g-4">
+  <div class="col-lg-7">
+    <div class="glass-card p-4">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="upload-drop" data-upload-zone data-input-id="resume-file-input">
+          <i class="fa-solid fa-cloud-arrow-up fs-1 gradient-text mb-2"></i>
+          <h5 class="display-font">Drag & drop your resume here</h5>
+          <p class="text-secondary small mb-0">or click to browse — PDF or DOCX, up to 10MB</p>
+          <div class="text-mono small mt-2" data-filename-label></div>
+        </div>
+        {{ form.file }}
+        {% if form.file.errors %}<div class="text-danger small mt-2">{{ form.file.errors }}</div>{% endif %}
+        <button type="submit" class="btn gradient-btn w-100 mt-4">Continue <i class="fa-solid fa-arrow-right"></i></button>
+      </form>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="glass-card p-4 h-100">
+      <h6 class="display-font mb-3">Recently uploaded</h6>
+      {% if recent %}
+        {% for r in recent %}
+        <div class="d-flex justify-content-between align-items-center py-2" style="border-bottom:1px solid var(--border);">
+          <div>
+            <div class="fw-medium">{{ r.original_filename }}</div>
+            <div class="text-secondary small">{{ r.file_type|upper }} &middot; {{ r.file_size_kb }} KB</div>
+          </div>
+          <span class="text-secondary small">{{ r.uploaded_at|date:"M d" }}</span>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="text-secondary small mb-0">Your uploaded resumes will appear here.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

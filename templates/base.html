@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ request.user.profile.theme_preference|default:'dark' }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}AI Resume Optimizer Pro{% endblock %}</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/theme.css' %}">
+{% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<div class="app-shell">
+  {% if user.is_authenticated %}
+  <aside class="sidebar" id="sidebar">
+    <div class="d-flex align-items-center gap-2 brand mb-4">
+      <span class="gradient-text"><i class="fa-solid fa-radar"></i> Resume Optimizer</span>
+    </div>
+    <nav class="nav flex-column">
+      <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'dashboard:home' %}"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a class="nav-link {% if 'upload_resume' in request.path %}active{% endif %}" href="{% url 'resumes:upload_resume' %}"><i class="fa-solid fa-file-arrow-up"></i> Resume Optimizer</a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'results' %}active{% endif %}" href="{% url 'dashboard:home' %}"><i class="fa-solid fa-magnifying-glass-chart"></i> ATS Analysis</a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'compare' %}active{% endif %}" href="{% url 'dashboard:home' %}"><i class="fa-solid fa-code-compare"></i> Resume Comparison</a>
+      <a class="nav-link {% if 'interview' in request.path %}active{% endif %}" href="{% url 'dashboard:home' %}"><i class="fa-solid fa-comments"></i> Interview Questions</a>
+      <a class="nav-link" href="{% url 'dashboard:home' %}"><i class="fa-solid fa-download"></i> Downloads</a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'history' %}active{% endif %}" href="{% url 'dashboard:history' %}"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'settings' %}active{% endif %}" href="{% url 'dashboard:settings' %}"><i class="fa-solid fa-gear"></i> Settings</a>
+    </nav>
+    <hr style="border-color:var(--border)">
+    <a class="nav-link" href="{% url 'authentication:logout' %}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+  </aside>
+  {% endif %}
+
+  <div class="main-content w-100">
+    {% if user.is_authenticated %}
+    <div class="topbar">
+      <button class="btn d-md-none" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+      <div></div>
+      <div class="d-flex align-items-center gap-3">
+        <span class="text-mono small text-secondary">{{ user.username }}</span>
+        <div class="theme-toggle" id="themeToggle"><i class="fa-solid fa-circle-half-stroke"></i></div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags|default:'info' }} glass-card border-0 mb-3" role="alert">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.12.0/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
+<script src="{% static 'js/app.js' %}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

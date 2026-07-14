@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Interview Prep - AI Resume Optimizer Pro{% endblock %}
+{% block content %}
+<div class="scan-hero glass-card p-5 text-center position-relative">
+  <div class="scan-beam"></div>
+  <i class="fa-solid fa-comments fs-1 gradient-text mb-3"></i>
+  <h4 class="display-font">Generate your personalized interview questions</h4>
+  <p class="text-secondary mx-auto" style="max-width:520px;">
+    Based on {{ analysis.resume.original_filename }} and this job description, the AI will generate
+    50–100 tailored interview questions across technical, HR, behavioral, and role-specific categories.
+  </p>
+  <form method="post" data-ai-loading>
+    {% csrf_token %}
+    <button type="submit" class="btn gradient-btn btn-lg mt-2">
+      <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Interview Questions
+    </button>
+  </form>
+</div>
+{% endblock %}

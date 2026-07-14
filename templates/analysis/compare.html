@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Resume Comparison - AI Resume Optimizer Pro{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-1">
+  <h2 class="display-font mb-0">Resume Comparison</h2>
+  {% if analysis.rewritten_sections %}
+  <div class="d-flex gap-2">
+    <a href="{% url 'analysis:download' analysis.id 'pdf' %}" class="btn gradient-btn btn-sm"><i class="fa-solid fa-file-pdf"></i> Download PDF</a>
+    <a href="{% url 'analysis:download' analysis.id 'docx' %}" class="btn btn-outline-light rounded-pill btn-sm"><i class="fa-solid fa-file-word"></i> DOCX</a>
+    <a href="{% url 'analysis:download' analysis.id 'txt' %}" class="btn btn-outline-light rounded-pill btn-sm"><i class="fa-solid fa-file-lines"></i> TXT</a>
+  </div>
+  {% endif %}
+</div>
+
+{% if analysis.rewritten_sections %}
+<p class="text-secondary mb-4">
+  <span class="kw-pill kw-matched">Green = Added</span>
+  <span class="kw-pill kw-suggested">Yellow = Modified</span>
+  <span class="kw-pill kw-missing">Red = Removed</span>
+</p>
+
+<div class="row g-4">
+  <div class="col-lg-6">
+    <div class="glass-card p-4 h-100">
+      <h6 class="display-font mb-3"><i class="fa-solid fa-file gradient-text"></i> Original Resume</h6>
+      <div class="text-mono small" style="white-space:pre-wrap; max-height:600px; overflow-y:auto;">{{ analysis.resume.raw_text }}</div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="glass-card p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h6 class="display-font mb-0"><i class="fa-solid fa-file-circle-check gradient-text"></i> Complete Updated Resume</h6>
+      </div>
+      <div class="text-mono small" style="white-space:pre-wrap; max-height:600px; overflow-y:auto; line-height:1.6;">{{ full_resume_text }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="glass-card p-4 mt-4">
+  <h6 class="display-font mb-3">Change Log & AI Explanations</h6>
+  {% if analysis.change_log %}
+    <div class="table-responsive">
+      <table class="table table-borderless align-middle">
+        <thead class="text-secondary small text-uppercase"><tr><th>Section</th><th>Type</th><th>Before</th><th>After</th><th>Why</th></tr></thead>
+        <tbody>
+        {% for c in analysis.change_log %}
+          <tr>
+            <td>{{ c.section }}</td>
+            <td>
+              {% if c.change_type == 'added' %}<span class="kw-pill kw-matched">Added</span>
+              {% elif c.change_type == 'modified' %}<span class="kw-pill kw-suggested">Modified</span>
+              {% else %}<span class="kw-pill kw-missing">Removed</span>{% endif %}
+            </td>
+            <td class="small diff-removed">{{ c.before|truncatewords:15 }}</td>
+            <td class="small diff-added">{{ c.after|truncatewords:15 }}</td>
+            <td class="small text-secondary">{{ c.reason }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="text-secondary mb-0">No detailed change log was returned for this analysis.</p>
+  {% endif %}
+</div>
+{% else %}
+<div class="glass-card p-4 text-center scan-hero position-relative">
+  <div class="scan-beam"></div>
+  <i class="fa-solid fa-code-compare fs-2 gradient-text mb-2"></i>
+  <h5 class="display-font mb-2">Nothing to compare yet</h5>
+  <p class="text-secondary mb-3">This resume was only score-checked, so there's no rewritten version to show side-by-side yet.</p>
+  <a href="{% url 'analysis:confirm_missing_skills' analysis.id %}" class="btn gradient-btn">
+    <i class="fa-solid fa-wand-magic-sparkles"></i> Optimize This Resume Now
+  </a>
+</div>
+{% endif %}
+{% endblock %}

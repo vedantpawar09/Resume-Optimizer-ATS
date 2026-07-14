@@ -1,0 +1,51 @@
+VEDANT PAWAR
+========================================
+
+PROFESSIONAL SUMMARY
+------------------------------
+Results-driven Python Developer and AI/ML Engineer with hands-on experience building production-grade NLP systems, LLM-integrated backends, and real-time AI applications, including Computer Vision and Object Detection using OpenCV, PIL/Pillow, YOLO, SSD, and Faster R-CNN. Architected CREVA — a 7-domain autonomous AI robot — using FastAPI, LangChain, RAG pipelines, and Docker, achieving 25% workflow efficiency gains across a 5-engineer team. Proficient in Python, Flask, Django, REST APIs, ChromaDB, OpenRouter, SerpAPI, ElevenLabs, AWS deployment patterns, CI/CD workflows, and Cloud Platforms. Actively seeking Python/AI backend or ML Engineer roles to deliver measurable business impact.
+
+CORE TECHNICAL SKILLS
+------------------------------
+Languages & Frameworks: Python · FastAPI · Flask · Django · REST API Development · SQL (MySQL · PostgreSQL) · JavaScript · HTML5 · CSS3
+AI / ML / NLP: LLM Integration · LangChain · RAG Pipelines · Prompt Engineering · NLP Pipelines · Hugging Face Transformers (basics) · AI Model APIs (OpenRouter, SerpAPI) · Machine Learning · Data Preprocessing · Sentiment Analysis · Text Classification · Vector Databases (ChromaDB) · Computer Vision · Object Detection
+Voice & Multimodal AI: gTTS · ElevenLabs API · Multilingual Speech Generation · Voice-enabled Interaction
+Frontend & UI: Gradio · Streamlit · React (basics)
+Libraries & Data: Pandas · NumPy · Matplotlib · JSON · CSV Processing · SQLAlchemy (basics)
+DevOps, Cloud & Tooling: Git · GitHub · Docker · Docker Compose · AWS (EC2, S3 — deployment patterns) · CI/CD Pipelines · GitHub Actions (basics) · VS Code · Agile / Scrum · Cloud Platforms
+Core CS Concepts: OOP · Data Structures & Algorithms · API Design Patterns · Microservices Concepts · Scalable Architecture · Backend Optimization · Async Programming
+
+PROFESSIONAL EXPERIENCE
+------------------------------
+AI/ML & IoT Intern — Incubators (CREVA AI Robot Project) Jan 2026 – Mar 2026
+Team size: 5 engineers | Stack: Python · FastAPI · NLP · REST APIs · IoT integration
+• Architected NLP-based interaction pipelines for the CREVA AI Robot, enabling real-time AI request processing across 7 functional domains and improving overall workflow efficiency by 25% — reducing average task completion time from ~40s to ~30s, utilizing Computer Vision techniques with OpenCV and PIL/Pillow.
+• Integrated 5+ AI modules with web-based interfaces via RESTful APIs, achieving seamless cross-module communication; reduced inter-service API latency by ~30% through payload optimization and connection pooling.
+• Designed and implemented a scalable AI + IoT backend architecture supporting modular, hot-swappable deployment workflows, enabling 3 new AI modules to be added without downtime, leveraging Docker and CI/CD Pipelines.
+• Containerized the FastAPI backend using Docker, streamlining local development and enabling consistent, reproducible deployment environments across the 5-person engineering team.
+• Collaborated in an Agile/Scrum environment — delivered across 6 two-week sprints, maintaining 100% on-time sprint delivery while iterating on real-time AI system integration.
+
+KEY PROJECTS
+------------------------------
+CREVA AI System — Multi-Domain Autonomous AI Robot | Stack: Python · FastAPI · NLP · LangChain · Docker · REST APIs
+• Designed and deployed NLP-driven interaction pipelines enabling real-time, context-aware AI communication across 7 independent functional domains — serving 20+ concurrent request types, incorporating Computer Vision with YOLO, SSD, and Faster R-CNN.
+• Integrated multiple LLM and AI APIs into a unified, scalable FastAPI backend with LangChain orchestration, supporting hot-swappable modular AI workflows and reducing integration effort by ~40%.
+• Engineered modular backend architecture with clean separation of concerns, containerized with Docker — enabling parallel feature development across a 5-engineer team with zero merge conflicts on core APIs.
+• Implemented robust API communication with error handling, retry logic, and async request queuing, achieving 99%+ uptime during active testing across 7 functional domains.
+
+EDUCATION
+------------------------------
+Bachelor of Computer Applications (BCA) 2022 – 2025
+Shri Shivaji Science College, Amravati, Maharashtra
+Relevant coursework: Data Structures, Algorithms, Computer Networks, and Database Systems, providing a solid foundation for Computer Vision and AI/ML applications.
+
+CERTIFICATIONS & CONTINUOUS LEARNING
+------------------------------
+• Python for Everybody — Coursera
+• FastAPI & REST API Development — Self-directed (3 production projects)
+• LangChain for LLM Application Development — DeepLearning.AI (In Progress)
+• Machine Learning & NLP Fundamentals — Applied via CREVA AI and NLP System projects
+• AWS Cloud Practitioner Essentials — In Progress (EC2, S3, Lambda deployment patterns applied in projects)
+• Docker & Containerization — Applied across all 3 production GitHub repositories
+• Git & GitHub Version Control — Active usage across 3+ production-grade repositories
+• OpenCV and PIL/Pillow for Computer Vision — Applied in CREVA AI Robot Project and other personal projects.

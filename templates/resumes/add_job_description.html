@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Job Description - AI Resume Optimizer Pro{% endblock %}
+{% block content %}
+<h2 class="display-font mb-1">Step 2 <span class="text-secondary fs-6">of 3</span></h2>
+<p class="text-secondary mb-4">Paste the job description, or upload a JD file.</p>
+
+<div class="progress mb-4"><div class="progress-bar" style="width:66%"></div></div>
+
+<div class="glass-card p-4">
+  {% if resume %}
+    <div class="mb-3 text-secondary small">Optimizing: <span class="text-primary fw-medium">{{ resume.original_filename }}</span></div>
+  {% endif %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if resume %}<input type="hidden" name="resume_id" value="{{ resume.id }}">{% endif %}
+    <div class="row g-3 mb-3">
+      <div class="col-md-6">{{ form.title }}</div>
+      <div class="col-md-6">{{ form.company }}</div>
+    </div>
+    <div class="mb-2">{{ form.raw_text }}</div>
+    <div class="d-flex justify-content-between text-secondary small mb-3">
+      <span id="jd-char-counter">0 characters</span>
+      <span>Paste the entire job posting for the most accurate analysis</span>
+    </div>
+
+    <div class="upload-drop mb-3" data-upload-zone data-input-id="jd-file-input">
+      <i class="fa-solid fa-file-pdf fs-3 gradient-text mb-2"></i>
+      <p class="text-secondary small mb-0">Or upload the job description as a PDF instead</p>
+      <div class="text-mono small mt-2" data-filename-label></div>
+    </div>
+    {{ form.source_file }}
+
+    {% if form.errors %}<div class="alert alert-danger py-2 small">{{ form.errors }}</div>{% endif %}
+    <button type="submit" class="btn gradient-btn w-100 mt-2" data-ai-loading>
+      Run AI Analysis <i class="fa-solid fa-wand-magic-sparkles"></i>
+    </button>
+  </form>
+</div>
+{% endblock %}

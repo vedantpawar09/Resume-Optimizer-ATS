@@ -1,0 +1,43 @@
+Vedant Pawar
+========================================
+
+AI/ML DEVELOPER WITH HANDS-ON EXPERIENCE BUILDING REAL-WORLD AI SYSTEMS USING NLP, APIS, AND SCALABLE BACKENDS. STRONG IN FASTAPI AND GRADIO WITH END-TO-END MODEL INTEGRATION, PROMPT ENGINEERING, AND REAL-TIME USER INTERACTION.
+------------------------------
+Highly motivated AI/ML Developer with hands-on experience in building scalable AI systems using NLP, APIs, and backends. Proficient in FastAPI, Gradio, and Django Framework, with expertise in end-to-end model integration, prompt engineering, and real-time user interaction on Cloud Platforms such as AWS, Azure, and GCP.
+
+PROFESSIONAL EXPERIENCE
+------------------------------
+Incubators | 01/2026 - 03/2026
+AI/ML & IoT Intern
+- Developed CREVA AI Robot, a multi-domain system covering 7 domains, utilizing NLP, Web Development, and System Integration, with a focus on scalable backend design and deployment using Docker.
+- Built pipelines for user interaction→ AI processing→ response generation, integrating AI modules with web interfaces using APIs and Message Queues such as RabbitMQ and Kafka.
+- Contributed to real-world AI + IoT system architecture and deployment on Cloud Platforms.
+
+EDUCATION
+------------------------------
+Shri shivaji science college Amravati | 07/2022 - 05/2025
+Bachelor of Computer Applications (BCA) - CGPA: 6.76
+- Completed coursework in computer science, including data structures, algorithms, and software engineering, with a strong foundation in Python, MySQL, and NoSQL Databases such as MongoDB and Redis.
+
+PROJECTS
+------------------------------
+CREVA AI System (Multi-Domain AI Robot)
+- Built NLP-based interaction pipeline: user input → AI processing→ AI response, using FastAPI, Django Framework, and PostgreSQL.
+- Integrated multiple AI modules and APIs into a unified system, demonstrating large-scale AI system design and integration on Cloud Platforms.
+Advanced NLP System (Voice + Multi-language AI)
+- Developed NLP system using Flask, FastAPI, and Pyramid Framework, with voice output and multi-language support.
+- Designed scalable API-based communication using Message Queues such as SQS.
+
+GITHUB PROJECTS
+------------------------------
+- Advanced NLP System – https://github.com/vedantpawar09/NLP_Project
+- AI Career Guidance System – https://github.com/vedantpawar09/IQTest-project
+
+KEY SKILLS
+------------------------------
+- Languages: Python, MySQL
+- AI/ML: NLP, Machine Learning, Prompt Engineering
+- Frameworks: FastAPI, Flask, Gradio, Django Framework, Pyramid Framework
+- Libraries: Scikit-learn, Pandas, NumPy
+- APIs: OpenRouter, SerpAPI, ElevenLabs, gTTS
+- Tools: Git, GitHub, VS Code, Docker

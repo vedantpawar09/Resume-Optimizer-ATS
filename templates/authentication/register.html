@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Sign up - AI Resume Optimizer Pro{% endblock %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-center" style="min-height:90vh;">
+  <div class="glass-card p-5" style="max-width:460px; width:100%;">
+    <h3 class="display-font mb-1 gradient-text">Create your account</h3>
+    <p class="text-secondary mb-4">Free forever. No credit card required.</p>
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">{{ form.username }}</div>
+      <div class="mb-3">{{ form.email }}</div>
+      <div class="mb-3">{{ form.password1 }}</div>
+      <div class="mb-3">{{ form.password2 }}</div>
+      {% if form.errors %}
+        <div class="alert alert-danger py-2 small">{{ form.errors }}</div>
+      {% endif %}
+      <button type="submit" class="btn gradient-btn w-100">Create account</button>
+    </form>
+    <p class="text-secondary small mt-3 mb-0">Already have an account? <a class="gradient-text" href="{% url 'authentication:login' %}">Log in</a></p>
+  </div>
+</div>
+{% endblock %}

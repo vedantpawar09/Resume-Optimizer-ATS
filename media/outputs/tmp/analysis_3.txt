@@ -1,0 +1,51 @@
+Vedant Pawar
+========================================
+
+
+------------------------------
+Vedant Pawar
+Amravati,Maharashtra, India
+vedantpawar0915@gmail.com | +917249207351
+AI/ML Developer with hands-on experience building real-world AI systems using NLP, APIs, and scalable backends. Strong in FastAPI, Gradio, and Django Framework with end-to-end model integration, prompt engineering, and real-time user interaction.
+
+PROFESSIONAL EXPERIENCE
+------------------------------
+Incubators 01/2026 - 03/2026
+AI/ML & IoT Intern
+• Developed CREVA AI Robot, a multi-domain system covering 7 domains using Django and Pyramid frameworks
+• Worked on NLP, Web Development, and System Integration with PostgreSQL and MongoDB databases
+• Built pipelines for user interaction→ AI processing→ response generation using Message queues and Asyncio
+• Integrated AI modules with web interfaces using APIs and Docker containerization
+• Contributed to real-world AI + IoT system architecture and deployment on AWS, Azure, and GCP cloud platforms
+
+EDUCATION
+------------------------------
+Shri shivaji science college Amravati 07/2022 - 05/2025
+Bachelor of Computer Applications (BCA) - CGPA: 6.76, with a strong foundation in data structures, algorithms, and OOP concepts
+
+PROJECTS
+------------------------------
+CREVA AI System (Multi-Domain AI Robot)
+• Built NLP-based interaction pipeline: user input → AI processing→ AI response using FastAPI and Django Framework
+• Integrated multiple AI modules and APIs into a unified system with Redis and PostgreSQL databases
+• Demonstrates large-scale AI system design and integration with Front-end technologies like Angular
+Advanced NLP System (Voice + Multi-language AI)
+• Developed NLP system using Flask + FastAPI and Django
+• Added voice output (gTTS, ElevenLabs) and multi-language support with MongoDB database
+• Designed scalable API-based communication using Message queues and Docker
+
+GITHUB PROJECTS
+------------------------------
+• Advanced NLP System – https://github.com/vedantpawar09/NLP_Project
+• AI Career Guidance System – https://github.com/vedantpawar09/IQTest-project, showcasing expertise in AI/ML, Web Development, and System Integration
+
+KEY SKILLS
+------------------------------
+• Languages: Python, SQL
+• AI/ML: NLP, Machine Learning, Prompt Engineering
+• Frameworks: FastAPI, Flask, Gradio, Django Framework, Pyramid
+• Libraries: Scikit-learn, Pandas, NumPy
+• APIs: OpenRouter, SerpAPI, ElevenLabs, gTTS
+• Databases: PostgreSQL, MongoDB, Redis
+• Tools: Git, GitHub, VS Code, Docker
+• Cloud Platforms: AWS, Azure, GCP
